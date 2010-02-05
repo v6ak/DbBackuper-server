@@ -14,6 +14,7 @@ final class V6_Db_Backup_Server_BackupProvidingApplication{
 		if(! ($backupDriver instanceof V6_Db_Backup_Server_BackupProvidingApplication_BackupDriver) ){
 			throw new InvalidArgumentException('$backupDriver has to be a V6_Db_Backup_Server_BackupProvidingApplication_BackupDriver');
 		}
+		$this->backupDriver = $backupDriver;
 	}
 	
 	public function run(){

@@ -15,7 +15,7 @@ final class V6_Db_Backup_Server_HashFunctionPasswordVerifier{
 	}
 	
 	public function verify($pwd){
-		return call_user_func($this->hashFunction, $pdw) == $this->hashValue;
+		return call_user_func($this->hashFunction, $pwd) == $this->hashValue;
 	}
 	
 	public static function create($hashFunction, $hashValue){

@@ -47,7 +47,7 @@ final class V6_Db_Backup_Server_BackupProvidingApplication{
 	      $scols = null;
 	      foreach($data as $r) {
 	        if(!$scols){
-	          $scols = $this->tableQuote.implode($this->tableQuote.','.$this->tableQuote, array_keys($r)).$this->tableQuote;
+	          $scols = $this->tableQuote.implode($this->tableQuote.','.$this->tableQuote, array_filter(array_keys($r), 'is_string')).$this->tableQuote;
 	        };
 	        $escvals = array();
 	      	echo 'INSERT INTO ';

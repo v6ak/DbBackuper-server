@@ -33,6 +33,7 @@ final class V6_Db_Backup_Server_BackupProvidingApplication{
 			case 'create table':
 	      $name = @ ((string)$_GET['table']);
 	      echo $this->backupDriver->getTableDefinition($name);
+	      echo ';';
 	    	break;
 	    case 'data':
 	      $name = @ ((string)$_GET['table']);
@@ -58,7 +59,7 @@ final class V6_Db_Backup_Server_BackupProvidingApplication{
 	            echo ',';
 	          };
 	        };
-	        echo ')';
+	        echo ');';
 	        echo "\n";
 	      };
 	    	break;

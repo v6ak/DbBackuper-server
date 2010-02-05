@@ -6,6 +6,8 @@ final class V6_Db_Backup_Server_BackupProvidingApplication{
 	
 	private $backupDriver;
 	
+	private $tableQuote = '';
+	
 	public function __construct($passwordVerifier, $backupDriver){
 		if(!is_callable($passwordVerifier)){
 			throw new InvalidArgumentException('$passwordVerifier has to be valid callback');
@@ -15,6 +17,10 @@ final class V6_Db_Backup_Server_BackupProvidingApplication{
 			throw new InvalidArgumentException('$backupDriver has to be a V6_Db_Backup_Server_BackupDriver');
 		}
 		$this->backupDriver = $backupDriver;
+	}
+	
+	public function setTableQuote($quote){
+		$this->tableQuote = $quote;
 	}
 	
 	public function run(){
@@ -41,7 +47,7 @@ final class V6_Db_Backup_Server_BackupProvidingApplication{
 	      $scols = null;
 	      foreach($data as $r) {
 	        if(!$scols){
-	          $scols = implode(',', array_keys($r));
+	          $scols = $this->tableQuote.implode($this->tableQuote.','.$this->tableQuote, array_keys($r)).$this->tableQuote;
 	        };
 	        $escvals = array();
 	      	echo 'INSERT INTO ';

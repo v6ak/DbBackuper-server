@@ -44,7 +44,7 @@ final class V6_Db_Backup_Server_BackupProvidingApplication{
 	        };
 	        $escvals = array();
 	      	echo 'INSERT INTO ';
-	        echo $tbl;
+	        echo $name;
 	        echo '(';
 	        echo $scols;
 	        echo ')';

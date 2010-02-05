@@ -21,11 +21,12 @@ final class V6_Db_Backup_Server_PdoMysqlBackupDriver implements V6_Db_Backup_Ser
 		return $this->dbh->quote($value);
 	}
 	
-	// FIXME: implement
 	public function getTableData($name){
 		return $this->dbh->query('SELECT * FROM '.$name);
 	}
 	
-	public function getTableDefinition($name){}
+	public function getTableDefinition($name){
+		return $this->dbh->query('SHOW CREATE TABLE '.$name)->fetchObject()->{'Create Table'};
+	}
 	
 }

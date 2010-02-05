@@ -8,7 +8,7 @@ final class V6_Db_Backup_Server_HashFunctionPasswordVerifier{
 	
 	private function __construct($hashFunction, $hashValue){
 		if(!is_callable($hashFunction)){
-			throw new InvalidArgumentException('$hashFunction has to be valid callback')
+			throw new InvalidArgumentException('$hashFunction has to be valid callback');
 		}
 		$this->hashFunction = $hashFunction;
 		$this->hashValue = $hashValue;
@@ -19,7 +19,7 @@ final class V6_Db_Backup_Server_HashFunctionPasswordVerifier{
 	}
 	
 	public static function create($hashFunction, $hashValue){
-		return new array(new self($hashFunction, $hashValue), 'verify');
+		return array(new self($hashFunction, $hashValue), 'verify');
 	}
 	
 }

@@ -1,6 +1,6 @@
 <?php
 
-interface V6_Db_Backup_Server_BackupProvidingApplication_BackupDriver{
+interface V6_Db_Backup_Server_BackupDriver{
 
 	public function listTables();
 	

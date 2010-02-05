@@ -8,10 +8,10 @@ final class V6_Db_Backup_Server_BackupProvidingApplication{
 	
 	public function __construct($passwordVerifier, $backupDriver){
 		if(!is_callable($passwordVerifier)){
-			throw new InvalidArgumentException('$passwordVerifier has to be valid callback')
+			throw new InvalidArgumentException('$passwordVerifier has to be valid callback');
 		}
 		$this->passwordVerifier = $passwordVerifier;
-		if(! ($backupDriver instanceof V6_Db_Backup_Server_BackupProvidingApplication_BackupDriver) ){
+		if(! ($backupDriver instanceof V6_Db_Backup_Server_BackupDriver) ){
 			throw new InvalidArgumentException('$backupDriver has to be a V6_Db_Backup_Server_BackupProvidingApplication_BackupDriver');
 		}
 		$this->backupDriver = $backupDriver;
@@ -27,7 +27,7 @@ final class V6_Db_Backup_Server_BackupProvidingApplication{
 		switch(@$_GET['action']){
 			case 'tables':
 	      foreach ($this->backupDriver->listTables() as $tbl) {
-	        echo $tbl[0]."\n";
+	        echo $tbl."\n";
 	      };
 	    	break;
 			case 'create table':

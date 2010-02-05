@@ -47,7 +47,9 @@ final class V6_Db_Backup_Server_BackupProvidingApplication{
 	      $scols = null;
 	      foreach($data as $r) {
 	        if(!$scols){
-	          $scols = $this->tableQuote.implode($this->tableQuote.','.$this->tableQuote, array_filter(array_keys($r), 'is_string')).$this->tableQuote;
+	          $cols = array_filter(array_keys($r), 'is_string');
+						$scols = $this->tableQuote.implode($this->tableQuote.','.$this->tableQuote, $cols).$this->tableQuote;
+	          $count = count($cols);
 	        };
 	        $escvals = array();
 	      	echo 'INSERT INTO ';
@@ -56,14 +58,15 @@ final class V6_Db_Backup_Server_BackupProvidingApplication{
 	        echo $scols;
 	        echo ')';
 	        echo 'VALUES(';
-	        $count = count($r);
 	        $i = 0;
-	        foreach ($r as $value) {
-	          $i++;
-	        	echo $this->backupDriver->quote($value);
-	        	if( $i != $count ){
-	            echo ',';
-	          };
+	        foreach ($r as $key=>$value) {
+	        	if(is_string($key)){
+		          $i++;
+		        	echo $this->backupDriver->quote($value);
+		        	if( $i != $count ){
+		            echo ',';
+		          }
+		        }
 	        };
 	        echo ');';
 	        echo "\n";

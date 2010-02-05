@@ -22,7 +22,9 @@ final class V6_Db_Backup_Server_PdoMysqlBackupDriver implements V6_Db_Backup_Ser
 	}
 	
 	public function getTableData($name){
-		return $this->dbh->query('SELECT * FROM '.$name);
+		$stmt = $this->dbh->query('SELECT * FROM '.$name);
+		$stmt->setFetchMode(PDO::FETCH_ASSOC);
+		return $stmt;
 	}
 	
 	public function getTableDefinition($name){

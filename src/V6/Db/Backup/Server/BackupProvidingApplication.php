@@ -62,7 +62,8 @@ final class V6_Db_Backup_Server_BackupProvidingApplication{
 	      };
 	    	break;
 	    default:
-      	throw new Exception('bad action');
+      	echo 'bad action';
+      	return;
     }
     echo "\n".'-- OK';
 	}

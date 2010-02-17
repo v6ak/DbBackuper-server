@@ -1,0 +1,16 @@
+license: see license.txt
+
+example of use:
+try{
+	$backupDriver = new V6_Db_Backup_Server_PdoMysqlBackupDriver(get instance of pdo);
+	$verifier = V6_Db_Backup_Server_HashFunctionPasswordVerifier::create('sha1', sha1 hash of your PWD);
+	$bu = new V6_Db_Backup_Server_BackupProvidingApplication($verifier, $backupDriver);
+	$bu->setTableQuote('`');
+	$bu->run();
+}catch(Exception $e){
+	error handling
+}
+
+SECURITY WARNING: V6_Db_Backup_Server_PdoMysqlBackupDriver allows SQL injection for authorized users!
+
+client: http://github.com/v6ak/DbBackuper-client
